@@ -7,16 +7,20 @@ const server=http.createServer(app);
 
 const io=new Server(server,{
     cors:{
-        origin: ['https://chat-app-1-icru.onrender.com']
+        origin: ['https://chat-app-1-icru.onrender.com'],
+        methods: ["GET", "POST"],
+        credentials: true,
     }
 })
+
+// used to store online users 
+const userSocketMap={}; //{userId: socketId};
+
 
 export function getReceiverSocketId(userId){
      return userSocketMap[userId];
 }
 
-// used to store online users 
-const userSocketMap={}; //{userId: socketId};
     
 io.on("connection",(socket)=>{
     console.log("A user connected",socket.id);
