@@ -76,10 +76,10 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
   try {
-    res.clearCookie("jwt", {
+    res.clearCookie('jwt', {
       httpOnly: true,
-      sameSite: "strict",
-      secure: process.env.NODE_ENV === "production", // match generateToken
+      sameSite: "none",
+      secure: true, // match generateToken
       path: "/", // match generateToken
     });
 
